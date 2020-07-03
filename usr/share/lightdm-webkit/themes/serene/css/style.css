@@ -1,5 +1,5 @@
 body{
-    background: url("../img/serene-wallpaper-1.png") center center no-repeat;
+    background-image: url("../img/serene-wallpaper-1.png") center center no-repeat;
     background-size: cover;
     height: 100vh;
 }
@@ -28,8 +28,6 @@ body::before{
 }
 #main-user{
     text-align: center;
-}
-#main-user .user-lists{
 }
 #main-user .avatar{
     display: inline-block;
@@ -138,8 +136,6 @@ body::before{
     background-color: #666;
     font-size: 0;
     text-align: center;
-}
-#actions span{
 }
 #actions img{
     width: 26px;
