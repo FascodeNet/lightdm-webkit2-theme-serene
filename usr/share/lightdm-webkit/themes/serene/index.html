@@ -176,7 +176,7 @@ class Login {
 
         // main user
         $("#main-user h1").textContent = this.defaultUser.display_name;
-        $("#main-user .avatar").style.backgroundImage = "url(\""+(this.defaultUser.image|| "img/icon.png")+"\")";
+        $("#main-user .avatar").style.backgroundImage = "url(\""+(this.defaultUser.image|| "./img/icon.png")+"\")";
         $(".password").value="";
         $(".password").focus();
         $("#main-user .warn").style.display = "none";
@@ -189,7 +189,7 @@ class Login {
                 html += `
                 <div class="user" onClick="window.login.updateDefault(${i});">
                     <div class="user-lists">
-                        <div class="avatar" style="background-image:url('${user.image || "img/icon.png"}');"></div>
+                        <div class="avatar" style="background-image:url('${user.image || "./img/icon.png"}');"></div>
                     </div>
                     <div class="user-mains">
                         <h1>${user.display_name}</h1>
