@@ -4,193 +4,38 @@
 <head>
     <title>login</title>
     <meta charset='utf-8'/>
-    <style>
-    *{padding:0;margin:0;box-sizing:border-box;}
-    #wrapper{
-    position:absolute;
-    top:0;left:0;right:0;bottom:0;
-    background-image: url("./bg.jpg");
-    background-repeat: no-repeat;
-    z-index:-999;
-    overflow:hidden;
-    }
-    #wrapper>* {
-    transition: opacity .5s;
-    }
-    #wrapper.inactive >*{opacity: 0;}
-    #wrapper.active >*{opacity: 1;}
-    #wrapper.inactive >#time{
-    opacity:1;}
-    body{font-family:"SF Pro Text", sans-serif;}
-
-    /* time*/
-
-    #time{
-        position: absolute;
-        bottom: 40px;
-        right: 40px;
-        text-align: right;
-        color: white;
-        padding: 20px;
-        text-shadow: 0 0 5px #000;
-    }
-    .background {
-        position: absolute;
-        width: 100%;
-        height:100%;
-        top:0;left:0;
-        z-index:-1;
-        background-image:url("./bg-blurred.jpg");
-        background-attachment: fixed;
-        filter:brightness(60%);
-    }
-    #time h1 {
-    font-size: 96px;
-    font-style: normal;
-    font-weight: 1;
-    }
-    #time h2 {
-    font-weight: 1;
-    }
-    /* user */
-    #users{
-        position: absolute;
-        bottom: 40px;
-        left: 40px;
-    }
-    .user {
-    position:relative;
-    padding: 10px 15px;
-    display:table;
-    height: 64px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-    #alt-users > div{ cursor: pointer; }
-    #alt-users > div:hover{ background: rgba(0,0,0,0.3); }
-    .user .background {border-radius: 10px;
-        margin-bottom: 20px;}
-    .user h1 {
-    font-size: 15px;
-    color: #fff;
-    margin-left: 20px;
-        text-shadow: 0 0 5px #000;
-    }
-    #main-user h1 {
-    margin-top: -5px;
-    margin-bottom: 5px; }
-    #main-user .warn {
-    font-size: 10px; margin-left: 20px;
-    margin-top: 5px;
-    margin-bottom: -3px;
-    color: #ddd;
-    }
-    .user input[type="password"] {
-    width: 100%;
-    padding: 5px 20px;
-    border: 1px solid rgba(0,0,0,0.3);
-    border-radius: 20px;
-    background: rgba(0,0,0,0.3);
-    color:#fff;
-    }
-    .user .avatar {
-    width: 64px;
-    height: 64px;
-    margin-right: 10px;
-    background-size: contain;
-    cursor:pointer;
-    }
-    /*alt user */
-    #alt-users {
-        transition: margin-left 0.3s;
-    }
-    #alt-users.hidden {
-        margin-left: -280px;
-    }
-    #alt-users.shown {
-        margin-left: 0;
-    }
-    /*btns */
-    #actions{
-        position: absolute;
-        right: 40px;
-        top: 40px;
-        padding: 5px 15px;
-        height:42px;
-    border-radius: 20px;
-    }
-    #actions .background { border-radius: 20px; }
-    #actions span {
-        display:inline-block;
-        width: 32px;
-        height:33px;
-        cursor:pointer;
-        background-position: center;
-        border-bottom: 1px solid transparent;
-        margin-right: 5px;
-        }
-    #actions span:last-child { margin-right:0; }
-    #actions span:hover {border-bottom: 1px solid #fff;}
-    #poweroff{ background-image: url("./system-shutdown.svg"); }
-    #reboot{ background-image: url("./reboot.svg"); }
-    #suspend{ background-image: url("./system-suspend.svg"); }
-    #hibernate{ background-image: url("./system-suspend-hibernate.svg"); }
-    /*session bar*/
-    #session-bar {
-    position: absolute;
-    left: 40px;
-    bottom: 10px;
-    list-style-type: none;
-    padding: 10px;
-    border-radius: 10px;
-    }
-    #session-bar .background { border-radius: 10px; }
-    #session-bar li {
-    display: inline-block;
-    border-right: 1px solid #aaa;
-    padding: 0 10px;
-    cursor:pointer;
-    color: #aaa;
-    }
-    #session-bar li:last-child { border: 0 none; }
-    #session-bar li.active{
-    color: #fff;
-    font-weight: bold;
-    }
-    </style>
+    <link rel="stylesheet" href="css/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div id="wrapper" class="inactive">
-        <div id="actions">
-            <div class="background"></div>
-            <span id="poweroff" title="poweroff"></span>
-            <span id="reboot" title="reboot"></span>
-            <span id="suspend" title="suspend"></span>
-            <span id="hibernate" title="hibernate"></span>
-        </div>
-        <ul id="session-bar">
-            <div class="background"></div>
-            <div class="container"></div>
-        </ul>
         <div id="users">
-            <div id="alt-users" class="hidden"></div>
             <div class="user" id="main-user">
-                <div class="background"></div>
-                <div style='display:table-cell; vertical-align: bottom;'>
+                <div class="user-lists">
                 <div class="avatar"></div>
                 </div>
-                <div style='display:table-cell; vertical-align: bottom;'>
+                <div class="user-mains">
                 <h1>name</h1>
-                <input class="password" type="password" placeholder="パスワード" />
+                <input class="password" type="password" placeholder="Password" />
                 <p class="warn" style="display:none;">try again?</p>
                 </div>
             </div>
         </div>
-        <div id="time">
-            <h1 id="time-text">00:00</h1>
-            <h2 id="date-text">monday, jan 1</h2>
-        </div>
+    </div>
+    <div id="alt-users" class="hidden"></div>
+    <div id="actions">
+        <span id="poweroff" title="poweroff"><img src="img/system-shutdown.svg" alt=""></span>
+        <span id="reboot" title="reboot"><img src="img/reboot.svg" alt=""></span>
+        <span id="suspend" title="suspend"><img src="img/system-suspend.svg" alt=""></span>
+        <span id="hibernate" title="hibernate"><img src="img/system-suspend-hibernate.svg" alt=""></span>
+    </div>
+    <ul id="session-bar">
+        <select class="container" onchange="window.login.changeSession(this.value);"></select>
+    </ul>
+    <div id="time">
+        <h1 id="time-text">00:00:00</h1>
+        <h2 id="date-text">monday, jan 1</h2>
     </div>
     <script>
 
@@ -213,37 +58,30 @@ class Login {
         this.otherUsers = [];
         this.password = "";
 
-        this.bindInactive();
+        // this.bindInactive();
         this.bindEvents();
         this.setupSessions();
         this.setupUsers();
-        this.updateTime();
     }
 
-    // time
-    updateTime(){
-        const d = new Date();
-        $("#time-text").textContent = `${pad0(d.getHours())}:${pad0(d.getMinutes())}`;
-        $("#date-text").textContent = `${d.getDayOfWeek()}, ${d.getMonthName()} ${d.getDate()}`.toLowerCase();
-        setTimeout(this.updateTime, 1000);
-    }
 
-    // events
-    bindInactive() {
-        let interval = 1;
-        setInterval(() => {
-            if(interval === 4) {
-                $("#wrapper").className = "inactive";
-                interval = 1;
-                return;
-            }
-            interval++;
-        }, 1000);
-        document.body.onmousemove = document.body.onkeypress = () => {
-            $("#wrapper").className = "active";
-            interval = 1;
-        };
-    }
+
+    // // events
+    // bindInactive() {
+    //     let interval = 1;
+    //     setInterval(() => {
+    //         if(interval === 4) {
+    //             $("#wrapper").className = "inactive";
+    //             interval = 1;
+    //             return;
+    //         }
+    //         interval++;
+    //     }, 1000);
+    //     document.body.onmousemove = document.body.onkeypress = () => {
+    //         $("#wrapper").className = "active";
+    //         interval = 1;
+    //     };
+    // }
 
     bindEvents() {
         $("#main-user .avatar").onclick = () => {
@@ -284,32 +122,45 @@ class Login {
 
     // users
     setupUsers() {
+        
         this.updateDefault(-1);
+
     }
 
     updateDefault(idx) {
+
         if(lightdm._username){
             lightdm.cancel_authentication();
         }
         lightdm.cancel_timed_login();
 
         $("#alt-users").className = "hidden";
-        if(idx === -1)
-            if(lightdm.select_user_hint)
+        
+        if(idx === -1){
+            if(lightdm.select_user_hint){
                 this.defaultUser = lightdm.users.find(user => user.username === lightdm.select_user_hint);
-            else
+
+            } else {
                 this.defaultUser = lightdm.users[0];
-        else this.defaultUser = this.otherUsers[idx];
-        if(this.defaultUser.session) {
-            for(let i = 0; i < lightdm.sessions.length; i++) {
-                if(lightdm.sessions[i].key === this.defaultUser.session) {
-                    this.changeSession(i);
-                    break;
-                }
             }
         } else {
-            this.changeSession(0);
-        }
+            localStorage.setItem("nameId",idx)
+            this.defaultUser = this.otherUsers[idx];
+        } 
+        //         // this.defaultUser = this.otherUsers[idx];
+        // console.log(localStorage.getItem("nameId"));
+        // console.log(idx);
+        // console.log(lightdm.select_user_hint);
+        // console.log(this.defaultUser);
+        // console.log(lightdm.users.find(user => user.username === lightdm.select_user_hint));
+        // console.log(lightdm.users[-1]);
+        // console.log(lightdm.users[0]);
+        // console.log(lightdm.users[1]);
+        // console.log(lightdm.users[2]);
+        // console.log(this.otherUsers[idx]);
+        
+
+    
 
         // HACK: lightdm produces duplicate users for some reason
         const userHash = {};
@@ -325,7 +176,7 @@ class Login {
 
         // main user
         $("#main-user h1").textContent = this.defaultUser.display_name;
-        $("#main-user .avatar").style.backgroundImage = "url(\""+(this.defaultUser.image|| "./im-user.svg")+"\")";
+        $("#main-user .avatar").style.backgroundImage = "url(\""+(this.defaultUser.image|| "img/icon.png")+"\")";
         $(".password").value="";
         $(".password").focus();
         $("#main-user .warn").style.display = "none";
@@ -334,17 +185,19 @@ class Login {
         let html = "";
         for(let i = 0; i < this.otherUsers.length; i++) {
             const user = this.otherUsers[i];
-            html += `
-            <div class="user" onClick="window.login.updateDefault(${i});">
-                <div class="background"></div>
-                <div style='display:table-cell; vertical-align: bottom;'>
-                    <div class="avatar" style="background-image:url('${user.image || "./im-user.svg"}');"></div>
+                    
+                html += `
+                <div class="user" onClick="window.login.updateDefault(${i});">
+                    <div class="user-lists">
+                        <div class="avatar" style="background-image:url('${user.image || "img/icon.png"}');"></div>
+                    </div>
+                    <div class="user-mains">
+                        <h1>${user.display_name}</h1>
+                    </div>
                 </div>
-                <div style='display:table-cell; vertical-align: middle;'>
-                    <h1>${user.display_name}</h1>
-                </div>
-            </div>
-            `;
+                `;
+                
+            
         }
         $("#alt-users").innerHTML = html;
 
@@ -355,15 +208,24 @@ class Login {
         let html = "";
         for(let i = 0; i < lightdm.sessions.length; i++) {
             const session = lightdm.sessions[i];
-            html+=`<li data-idx="${i}" onclick="window.login.changeSession(${i});">${session.name}</li>`;
+            if(localStorage.getItem("sessionId")==i){
+                html+=`<option class="active" selected data-idx="${i}" value="${i}">${session.name}</option>`;
+            }else{
+                html+=`<option data-idx="${i}" value="${i}">${session.name}</option>`;
+            }
         }
         $("#session-bar .container").innerHTML = html;
-        $("#session-bar .container li:first-child").classList.add("active");
+        if(localStorage.getItem("sessionId")==null){
+            $("#session-bar .container option:first-child").classList.add("active");
+            $("#session-bar .container option:first-child").selected = true;
+        }
     }
 
     changeSession(idx) {
-        $("#session-bar .container li.active").classList.remove("active");
-        $(`#session-bar .container li[data-idx="${idx}"]`).classList.add("active");
+        localStorage.setItem("sessionId", idx);
+        console.log(localStorage.getItem("sessionId"));
+        $("#session-bar .container option.active").classList.remove("active");
+        $(`#session-bar .container option[data-idx="${idx}"]`).classList.add("active");
     }
 }
 
@@ -395,6 +257,12 @@ function show_prompt(text, type) {
 __lightdm.then(result => {
     window.lightdm = result;
     window.login = new Login();
+    setInterval(function (){
+        const d = new Date();
+        $("#time-text").textContent = `${pad0(d.getHours())}:${pad0(d.getMinutes())}:${pad0(d.getSeconds())}`;
+        $("#date-text").textContent = `${d.getDayOfWeek()}, ${d.getMonthName()} ${d.getDate()}`.toLowerCase();
+
+    }, 1000);
 });
 
     </script>
