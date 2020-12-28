@@ -1,5 +1,5 @@
 body{
-    background-image: url("../img/serene-wallpaper-1.png") center center no-repeat;
+    background-image: url("../img/serene-wallpaper-1.png");
     background-size: cover;
     height: 100vh;
 }
@@ -40,7 +40,7 @@ body::before{
 #main-user h1{
     font-size: 18px;
     padding: 10px 0;
-    color: #aaa;
+    color: #444;
 }
 #main-user .password{
     font-size: 18px;
